@@ -27,25 +27,38 @@ console.log(arrNumPc);
 function cercaNumero(array, num) {
   for (var i = 0; i < array.length; i++) {
     if (num == array[i]) {
-      return "Ops hai beccato la mina";
+      return true;
     }
   }
-  return "bravo";
+  return false;
 }
-var numeroUtente = parseInt(prompt("Dammi un numero da 1 a 100"));
-
-console.log(numeroUtente);
-console.log(cercaNumero(arrNumPc, numeroUtente));
-
-
-
-
-
-
-
 
 
 // L’utente non può inserire più volte lo stesso numero.
 // Se il numero è presente nella lista dei numeri generati, la partita termina, altrimenti si continua chiedendo all’utente un altro numero.
+var k = 0;
+
+while ((k < 3) && (cercaNumero(arrNumPc, numeroUtente) == false)) {
+  var numeroUtente = parseInt(prompt("Dammi un numero da 1 a 100"));
+  k++;
+}
+
+console.log(numeroUtente);
+
+
 // La partita termina quando il giocatore inserisce un numero “vietato” o raggiunge il numero massimo possibile di numeri consentiti.
+
+// salvo la funzione in una variabile
+var verifica = cercaNumero(arrNumPc, numeroUtente);
+
+if (verifica == true) {
+  console.log("Ops hai beccato una mina");
+} else {
+  console.log("Hai vinto");
+}
+console.log(verifica);
+
+
+
+
 // Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
