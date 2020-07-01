@@ -18,17 +18,22 @@ function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min; //Il max è incluso e il min è incluso
 }
 // I numeri non possono essere duplicati
+var stampaDiff = document.getElementById('difficolta');
 var arrNumPc = [];
 var numCasualiPc;
 while (arrNumPc.length < 16) {
   if (difficolta == 0) {
     numCasualiPc = getRandomIntInclusive(1, 100);
+    stampaDiff.innerHTML = "Difficoltà selezionata: livello " + difficolta;
   } else if (difficolta == 1) {
     numCasualiPc = getRandomIntInclusive(1, 80);
+    stampaDiff.innerHTML = "Difficoltà selezionata: livello " + difficolta;
   } else if (difficolta == 2) {
     numCasualiPc = getRandomIntInclusive(1, 50);
+    stampaDiff.innerHTML = "Difficoltà selezionata: livello " + difficolta;
   } else if (isNaN(difficolta) || difficolta > 2) {
     numCasualiPc = getRandomIntInclusive(1, 100);
+    stampaDiff.innerHTML = "Non hai selezionato un valore accettabile, quindi giocherai al livello 0";
   }
   // console.log(numCasualiPc);
   // a questo punto devo controllare se il numero generato random è già incluso nel mio array
@@ -109,7 +114,7 @@ if (verifica == true) {
 
 // Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
 console.log("il tuo punteggio è:", punteggio);
-document.getElementById('difficolta').innerHTML = "Difficoltà selezionata: livello " + difficolta;
+// document.getElementById('difficolta').innerHTML = "Difficoltà selezionata: livello " + difficolta;
 
 
 
