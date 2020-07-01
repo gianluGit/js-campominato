@@ -11,9 +11,10 @@ var arrNumPc = [];
 
 while (arrNumPc.length < 16) {
   var numCasualiPc = getRandomIntInclusive(1, 100);
+  // console.log(numCasualiPc);
   // a questo punto devo controllare se il numero generato random è già incluso nel mio array
-  var incluso = arrNumPc.includes(numCasualiPc); //mi tornerà true o false
-  if (incluso == false) {
+  // var incluso = arrNumPc.includes(numCasualiPc); //mi tornerà true o false
+  if (cercaNumero(arrNumPc, numCasualiPc) == false) {
     arrNumPc.push(numCasualiPc)
   }
 }
@@ -51,7 +52,7 @@ function cercaNumero(array, num) {
 
 var arrNumUtente = [];
 
-var maxTentativi = 16;
+var maxTentativi = 5;
 
 var punteggio = 0;
 while ((arrNumUtente.length < maxTentativi) && (cercaNumero(arrNumPc, numeroUtente) == false)) {
@@ -79,8 +80,11 @@ var verifica = cercaNumero(arrNumPc, numeroUtente);
 
 if (verifica == true) {
   console.log("Ops hai beccato una mina, hai perso");
+  document.getElementById('punti').innerHTML = "Ops hai beccato una mina, hai perso. Hai totalizzato " + punteggio + " punti."
 } else {
   console.log("Hai vinto");
+  document.getElementById('punti').innerHTML = "Complimenti! Hai vinto! Hai totalizzato " + punteggio + " punti."
+
 }
 
 
