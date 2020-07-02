@@ -17,22 +17,28 @@ function getRandomIntInclusive(min, max) {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min; //Il max è incluso e il min è incluso
 }
+var numMin = 1;
+var numMax;
 // I numeri non possono essere duplicati
 var stampaDiff = document.getElementById('difficolta');
 var arrNumPc = [];
 var numCasualiPc;
 while (arrNumPc.length < 16) {
   if (difficolta == 0) {
-    numCasualiPc = getRandomIntInclusive(1, 100);
+    numMax = 100;
+    numCasualiPc = getRandomIntInclusive(numMin, numMax);
     stampaDiff.innerHTML = "Difficoltà selezionata: livello " + difficolta;
   } else if (difficolta == 1) {
-    numCasualiPc = getRandomIntInclusive(1, 80);
+    numMax = 80;
+    numCasualiPc = getRandomIntInclusive(numMin, numMax);
     stampaDiff.innerHTML = "Difficoltà selezionata: livello " + difficolta;
   } else if (difficolta == 2) {
-    numCasualiPc = getRandomIntInclusive(1, 50);
+    numMax = 50;
+    numCasualiPc = getRandomIntInclusive(numMin, numMax);
     stampaDiff.innerHTML = "Difficoltà selezionata: livello " + difficolta;
   } else if (isNaN(difficolta) || difficolta > 2) {
-    numCasualiPc = getRandomIntInclusive(1, 100);
+    numMax = 100;
+    numCasualiPc = getRandomIntInclusive(numMin, numMax);
     stampaDiff.innerHTML = "Non hai selezionato un valore accettabile, quindi giocherai al livello 0";
   }
   // console.log(numCasualiPc);
@@ -80,15 +86,15 @@ var maxTentativi = 5;
 
 var punteggio = 0;
 while ((arrNumUtente.length < maxTentativi) && (cercaNumero(arrNumPc, numeroUtente) == false)) {
-  var numeroUtente = parseInt(prompt("Inserisci un numero da 1 a 100"));
+  var numeroUtente = parseInt(prompt("Inserisci un numero"));
   // ora però devo far si che l'utente non inserisca 2 volte lo stesso numero o un valore non consentito
   // var inclusoUtente = arrNumUtente.includes(numeroUtente); //mi tornerà true o false
-  if (consentiti(1, 100, numeroUtente) == true && cercaNumero(arrNumPc, numeroUtente) == false && cercaNumero(arrNumUtente, numeroUtente) == false) {
+  if (consentiti(numMin, numMax, numeroUtente) == true && cercaNumero(arrNumPc, numeroUtente) == false && cercaNumero(arrNumUtente, numeroUtente) == false) {
     arrNumUtente.push(numeroUtente);
     punteggio++;
   } else if (cercaNumero(arrNumUtente, numeroUtente) == true) {
     alert("Hai già inserito questo numero")
-  } else if (consentiti(1, 100, numeroUtente) == false) {
+  } else if (consentiti(numMin, numMax, numeroUtente) == false) {
     alert("Inserisci un valore consentito")
   }
 }
